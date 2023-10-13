@@ -16,11 +16,11 @@ def add_event():
     event_description = input("Введіть опис події: ")
     
     if year in years_to_visit:
-        print(f"Подія для року {year} вже існує у списку подій.")
+        raise Exception(f"Подія для року {year} вже існує у списку подій.")
     else:
         time_dict[year] = event_description
-        events_list.append((year, event_description))  # Додавання до списку подій
-        years_to_visit.add(year)  # Оновлення множини років для відвідування
+        events_list.append((year, event_description))  
+        years_to_visit.add(year)  
         print(f"Подія {event_description} у {year} була додана до словника часу.")
         print("Оновлений список подій:")
         
@@ -36,7 +36,7 @@ def remove_event(events_list):
         del time_dict[year_to_remove]
         print(f"Подія {event_to_remove} у {year_to_remove} була видалена.")
     else:
-        print(f"Подія для року {year_to_remove} не знайдена у списку подій.")
+        raise Exception(f"Подія для року {year_to_remove} не знайдена у списку подій.")
 
 
 # Головний код
@@ -50,10 +50,10 @@ while True:
     
     if action == 'д':
         add_event()
-        action = ''  # Змінити значення action на пустий рядок
+        action = ''  
     elif action == 'в':
-        remove_event(events_list)  # Викликаємо функцію з передачею змінної events_list
-        action = ''  # Змінити значення action на пустий рядок
+        remove_event(events_list)  
+        action = ''  
     elif action == 'з':
         break
     else:
